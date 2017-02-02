@@ -1,9 +1,44 @@
-angular.module('makerswebService', ['ngResource'])
-        .factory('recursoCliente', function (Base64, $http, $resource) {
-            var authdata = Base64.encode('admin:salmos89');
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
-            $http.defaults.headers.post["Content-Type"] = "application/json";
+angular.module('makerswebService', ['ngResource', 'ngCookies'])
+        .factory('AuthenticationService', function (Base64, $http, $cookieStore, $rootScope, $timeout) {
+            var service = {};
 
+            service.login = function (username, password, callback) {
+
+                /* Dummy authentication for testing, uses $timeout to simulate api call
+                 ----------------------------------------------*/
+                $timeout(function () {
+                    var response = {success: username === 'admin' && password === 'salmos89'};
+                    console.log(username === 'admin' && password === 'salmos89');
+                    if (!response.success) {
+                        response.message = 'Username or password is incorrect';
+                    }
+                    callback(response);
+                }, 100);
+            };
+
+            service.setCredentials = function (username, password) {
+                var authdata = Base64.encode(username + ':' + password);
+
+                $rootScope.globals = {
+                    currentUser: {
+                        username: username,
+                        authdata: authdata
+                    }
+                };
+
+                $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+                $cookieStore.put('globals', $rootScope.globals);
+            };
+
+            service.clearCredentials = function () {
+                $rootScope.globals = {};
+                $cookieStore.remove('globals');
+                $http.defaults.headers.common.Authorization = 'Basic ';
+            };
+
+            return service;
+        })
+        .factory('recursoCliente', function ($resource) {
             return $resource('http://localhost:8080/spring-rest/api/v1/cliente/:clienteId', null, {
                 update: {
                     method: 'PUT'
@@ -42,7 +77,7 @@ angular.module('makerswebService', ['ngResource'])
                     }
                 });
             };
-            
+
             return service;
         })
         .factory('Base64', function () {

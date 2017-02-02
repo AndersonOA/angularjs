@@ -1,5 +1,8 @@
 angular.module('makersweb', ['makerswebService', 'ngAnimate', 'ngRoute'])
-        .config(function ($routeProvider, $locationProvider) {
+        .config(function ($routeProvider, $locationProvider, $httpProvider) {
+
+            $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
             $routeProvider.when('/clientes', {
                 templateUrl: 'partials/home.html',
                 controller: "ClientesController"

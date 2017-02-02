@@ -5,6 +5,8 @@
 <p ng-show="mensagem.length" class="alert alert-info">{{mensagem}}</p>
 
 <form novalidate name="formulario" class="row" ng-submit="submeter()">
+    <input type="text" name="username" class="form-control" ng-model="username" value="admin" />
+    <input type="password" name="password" class="form-control" ng-model="password" value="salmos89" />
     <div class="col-md-6">
         <div class="form-group">
             <label>Nome</label>
