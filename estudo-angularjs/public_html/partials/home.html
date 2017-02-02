@@ -1,0 +1,28 @@
+<div class="jumbotron">
+    <h1 class="text-center">Estudo AngularJS</h1>
+</div>
+
+<p ng-show="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+
+<div class="row">
+    <div class="col-md-12">
+        <form>
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <a class="btn btn-success" href="./clientes/novo">Novo Cliente</a>
+                </div>
+                <input ng-model="filtro" ng-model-options="{debounce: 500}" class="form-control" placeholder="Filtrar" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row"></div>
+<div class="row m-top-10">
+    <meu-painel class="col-md-2 painel-animado"
+                ng-repeat="cliente in clientes| filter : filtro" titulo="{{cliente.nome}}">
+<!--        <minha-foto url="{{foto.url}}" titulo="{{foto.titulo}}"></minha-foto>-->
+        <a href="./clientes/editar/{{cliente.id}}" class="btn btn-primary btn-block m-top-10">Editar</a> 
+        <meu-botao-perigo acao="remover(cliente)" nome="Remover"></meu-botao-perigo>
+    </meu-painel>
+    <!-- /fim panel -->
+</div>

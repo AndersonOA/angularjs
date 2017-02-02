@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="makersweb">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Estudo AngularJS</title>
+        <base href="http://localhost/projetos_git/angularjs/estudo-angularjs/public_html/">
+
+        <link rel="shortcut icon" href="_cdn/_img/favicon.png"/>
+        
+        <link href="_cdn/_scripts/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="_cdn/_scripts/css/bootstrap-theme.min.css" rel="stylesheet" />
+        
+        <link href="_cdn/_scripts/css/efeitos.css" rel="stylesheet"/>
+        
+        <!-- Scripts do AngularJS -->
+        <script src="_cdn/_scripts/js/_angularjs/angular.min.js"></script>
+        <script src="_cdn/_scripts/js/_angularjs/angular-animate.min.js"></script>
+        <script src="_cdn/_scripts/js/_angularjs/angular-route.min.js"></script>
+        <script src="_cdn/_scripts/js/_angularjs/angular-resource.min.js"></script>
+        <script src="_cdn/_scripts/js/_angularjs/angular-cookies.min.js"></script>
+        
+        <!-- Scripts proprios -->
+        <script src="_cdn/_scripts/js/main.js"></script>
+        <script src="_cdn/_scripts/js/_controller/home-controller.js"></script>
+        <script src="_cdn/_scripts/js/_controller/cliente-controller.js"></script>
+        <script src="_cdn/_scripts/js/_services/makersweb-service.js"></script>
+    </head>
+    <body>
+        <div class="container m-top-10">
+            <ng-view></ng-view>
+        </div><!-- /fim container -->
+    </body>
+</html>
